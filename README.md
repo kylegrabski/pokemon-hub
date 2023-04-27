@@ -1,4 +1,8 @@
-# Getting Started with Create React App
+# Pokémon Hub
+
+A place that shows GEN 1 pokemon displayed as a pokedex. 
+
+Future plans are to create user login/signup, storage of favorite pokemon, and mock pokemon battles against AI!
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) TS template.
 
