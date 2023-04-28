@@ -9,12 +9,11 @@ interface IPokemonData {
 }
 
 export function Pokedex() {
-    // const [pokemon, setPokemon] = useState([]);
     const [pokemon, setPokemon] = useState<IPokemonData[]>([]);
 
     useEffect(() => {
-        console.log(pokemon);
-    }, [pokemon])
+        fetchPokemon()
+    }, [])
 
     const fetchPokemon = async () => {
         try {
