@@ -1,39 +1,50 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
-interface PokemonData {
-    pokemon_entries: any[];
+interface IPokemonData {
+    name: string
+    order: number
+    sprites: any
+    stats: object[]
+    types: object[]
 }
 
 export function Pokedex() {
-    const [pokemon, setPokemon] = useState<PokemonData[]>([]);
+    // const [pokemon, setPokemon] = useState([]);
+    const [pokemon, setPokemon] = useState<IPokemonData[]>([]);
 
     useEffect(() => {
         console.log(pokemon);
-        console.log(typeof pokemon);
     }, [pokemon])
 
     const fetchPokemon = async () => {
-        console.log(`HERE WE GO!`);
-        const url = "https://pokeapi.co/api/v2/pokedex/kanto/"
+        try {
+            const url = "https://pokeapi.co/api/v2/pokemon?limit=151";
+            const response = await fetch(url);
+            const responseData = await response.json();
+            console.log(responseData);
+            const pokemonArray: IPokemonData[] = [];
 
-        const response = await fetch(url);
-        const jsonData  = await response.json();
+            for (const pokemon of responseData.results) {
+                const res = await fetch(pokemon.url);
+                const item = await res.json();
+                pokemonArray.push(item);
+            }
 
-        const pokemonArray: PokemonData[] = [jsonData] 
-
-        setPokemon(pokemonArray)
-        
-    }
+            setPokemon(pokemonArray);
+        } catch (error) {
+            throw new Error(`Failed to fetch Pokemon data: ${error}`);
+        }
+    };
 
     return (
         <>
-            <p>HELLO</p>
             <button onClick={fetchPokemon}>CLICK ME</button>
-            {/* {pokemon && pokemon.map((item, i) => {
-               return <p key={i}>
-                    {item.pokemon_entries}
-                </p>
-            })} */}
+            {pokemon && pokemon.map((item: IPokemonData) => (
+                <div key={item.order}>
+                    <p>Entry number: {item.order}</p>
+                    <img src={item.sprites.front_default} alt="" />
+                </div>
+            ))}
         </>
     )
 }
