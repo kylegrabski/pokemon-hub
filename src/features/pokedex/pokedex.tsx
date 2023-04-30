@@ -1,7 +1,9 @@
+import axios from 'axios';
 import { useState, useEffect } from 'react';
 
 interface IPokemonData {
     name: string
+    id: number
     order: number
     sprites: any
     stats: object[]
@@ -17,18 +19,20 @@ export function Pokedex() {
 
     const fetchPokemon = async () => {
         try {
-            const url = "https://pokeapi.co/api/v2/pokemon?limit=151";
-            const response = await fetch(url);
-            const responseData = await response.json();
-            console.log(responseData);
+            // Initial fetch to get the first 151 Pokemon
+            const {data} = await axios.get("https://pokeapi.co/api/v2/pokemon?limit=151");
+            console.log(data);
+
             const pokemonArray: IPokemonData[] = [];
 
-            for (const pokemon of responseData.results) {
+            // Loop through the first 151 Pokemon and get the unique data for each.
+            // Then push it into an array.
+            for (const pokemon of data.results) {
                 const res = await fetch(pokemon.url);
                 const item = await res.json();
                 pokemonArray.push(item);
             }
-
+            console.log(pokemonArray);
             setPokemon(pokemonArray);
         } catch (error) {
             throw new Error(`Failed to fetch Pokemon data: ${error}`);
@@ -37,11 +41,11 @@ export function Pokedex() {
 
     return (
         <>
-            <button onClick={fetchPokemon}>CLICK ME</button>
+            {/* <button onClick={fetchPokemon}>CLICK ME</button> */}
             {pokemon && pokemon.map((item: IPokemonData) => (
-                <div key={item.order}>
-                    <p>Entry number: {item.order}</p>
-                    <img src={item.sprites.front_default} alt="" />
+                <div key={item.id}>
+                    <p>Entry number: {item.id}</p>
+                    <img src={item.sprites.front_default} alt={item.name} />
                 </div>
             ))}
         </>
