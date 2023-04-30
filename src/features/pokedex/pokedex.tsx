@@ -39,13 +39,23 @@ export function Pokedex() {
         }
     };
 
+    const getAPI = async () => {
+        const response = await axios.get("http://localhost:5226/")
+        console.log(`HERES THE RESPONSE!! `, response);
+    }
+
     return (
         <>
-            {/* <button onClick={fetchPokemon}>CLICK ME</button> */}
+            <button onClick={getAPI}>CLICK ME</button>
             {pokemon && pokemon.map((item: IPokemonData) => (
                 <div key={item.id}>
+                    <hr></hr>
                     <p>Entry number: {item.id}</p>
+                    <p>Name: {item.name}</p>
                     <img src={item.sprites.front_default} alt={item.name} />
+                    <img src={item.sprites.front_shiny} alt={item.name} />
+                    <img src={item.sprites.back_default} alt={item.name} />
+                    <img src={item.sprites.back_shiny} alt={item.name} />
                 </div>
             ))}
         </>
