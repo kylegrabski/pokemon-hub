@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { useState, useEffect } from 'react';
+import StorageHelper from '../../utils/storage';
 
 interface IPokemonData {
     name: string
@@ -14,40 +15,35 @@ export function Pokedex() {
     const [pokemon, setPokemon] = useState<IPokemonData[]>([]);
 
     useEffect(() => {
-        fetchPokemon()
+        getAPI()
     }, [])
 
-    const fetchPokemon = async () => {
+    const getAPI = async () => {
         try {
-            // Initial fetch to get the first 151 Pokemon
-            const { data } = await axios.get("https://pokeapi.co/api/v2/pokemon?limit=151");
-            const pokemonArray: IPokemonData[] = [];
+            const sh = new StorageHelper("All-Pokemon");
 
-            // Loop through the first 151 Pokemon and get the unique data for each.
-            // Then push it into an array.
-            for (const pokemon of data.results) {
-                try {
-                    const { data: pokemonData } = await axios.get(pokemon.url);
-                    pokemonArray.push(pokemonData);
-                } catch (error) {
-                    throw new Error(`Failed to fetch data for ${pokemon.name}: ${error}`);
+            if (!sh.get()) {
+                const url: string = process.env.REACT_APP_GET_ALL_POKEMON || "";
+                if (!url) {
+                    throw new Error("NO ENV FOUND")
                 }
+                const { data } = await axios.get(url)
+                setPokemon(data);
+                sh.save(data);
+                return
             }
-            console.log(pokemonArray);
+
+            const pokemonArray = sh.get();
             setPokemon(pokemonArray);
+
         } catch (error) {
-            throw new Error(`Failed to fetch Pokemon data: ${error}`);
+            throw new Error(`failed to fetch Pokemon data: ${error}`);
         }
     };
 
-    const getAPI = async () => {
-        const response = await axios.get("http://localhost:5226/api/pokemon/")
-        console.log(`HERES THE RESPONSE!! `, response);
-    }
-
     return (
         <>
-            <button onClick={getAPI}>CLICK ME</button>
+            {/* <button onClick={getAPI}>CLICK ME</button> */}
             {pokemon && pokemon.map((item: IPokemonData) => (
                 <div key={item.id}>
                     <hr></hr>
