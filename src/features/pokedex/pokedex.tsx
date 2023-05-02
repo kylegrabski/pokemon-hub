@@ -15,10 +15,10 @@ export function Pokedex() {
     const [pokemon, setPokemon] = useState<IPokemonData[]>([]);
 
     useEffect(() => {
-        getAPI()
+        getPokemon()
     }, [])
 
-    const getAPI = async () => {
+    const getPokemon = async () => {
         try {
             const sh = new StorageHelper("All-Pokemon");
 
@@ -43,7 +43,6 @@ export function Pokedex() {
 
     return (
         <>
-            {/* <button onClick={getAPI}>CLICK ME</button> */}
             {pokemon && pokemon.map((item: IPokemonData) => (
                 <div key={item.id}>
                     <hr></hr>
