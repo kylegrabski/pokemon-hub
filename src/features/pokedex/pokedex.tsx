@@ -41,7 +41,7 @@ export function Pokedex() {
     };
 
     const getAPI = async () => {
-        const response = await axios.get("http://localhost:5226")
+        const response = await axios.get("http://localhost:5226/api/pokemon/")
         console.log(`HERES THE RESPONSE!! `, response);
     }
 
