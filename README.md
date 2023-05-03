@@ -10,6 +10,7 @@ Future plans are to create user login/signup, storage of favorite pokemon, and m
 - React.js
 - Redux
 - Axios
+- Jest
 - [ASP.NET REST API](https://github.com/kylegrabski/pokemon-hub-api)
 
 #### CURRENTLY WORKING ON
