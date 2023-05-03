@@ -27,18 +27,16 @@ export function Pokedex() {
     function handleScroll() {
         if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 200) {
           setPage(page + 1);
-        console.log(`WE HIT IT: ${page}`);
         }
     }
     
     // @TODO Call getPokemon when new page State gets sets
+    // @TODO Check local storage for Pokemon and set state to that (WHEN CACHING IS IMPLEMENTED THIS CAN BE REMOVED)
     const getPokemon = async () => {
         try {
-            console.log(`YO`);
             const sh = new StorageHelper("All-Pokemon");
-
-            // if (!sh.get()) {
             const url: string = process.env.REACT_APP_GET_ALL_POKEMON || "";
+            
             if (!url) {
                 throw new Error("NO ENV FOUND")
             }
@@ -46,15 +44,8 @@ export function Pokedex() {
             setPokemon(data);
 
             if (sh.get().length != pokemon.length) {
-                console.log(`WE GONNA SAVE IT!`);
                 sh.save(pokemon);
             }
-            
-            // }
-
-            // const pokemonArray = sh.get();
-            // setPokemon(pokemonArray);
-
         } catch (error) {
             throw new Error(`failed to fetch Pokemon data: ${error}`);
         }
