@@ -8,6 +8,7 @@ Future plans are to create user login/signup, storage of favorite pokemon, and m
 ### Technologies used:
 - TypeScript
 - React.js
+- Redux
 - Axios
 - [ASP.NET REST API](https://github.com/kylegrabski/pokemon-hub-api)
 
