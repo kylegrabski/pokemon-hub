@@ -1,5 +1,6 @@
 # Pokémon Hub
 ## WORK IN PROGRESS 
+### This project is for me to work in TypeScript with a .NET backend. 
 
 A place that shows GEN 1 pokemon displayed as a pokedex. 
 
