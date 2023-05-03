@@ -12,12 +12,15 @@ Future plans are to create user login/signup, storage of favorite pokemon, and m
 - [ASP.NET REST API](https://github.com/kylegrabski/pokemon-hub-api)
 
 #### CURRENTLY WORKING ON
-- Store favorite pokemon in local storage until implementation of a users database.
-- User login/signup 
-- Allow users to save favorites
-- Battle other Pokemon
-- - Player vs Player
-- - Player vs Computer
-- - Computer vs Computer
-- Styling of Cards for the Pokedex
-- Hover animations on cards
+- [X] Store favorite pokemon in local storage until implementation of a users database
+- [ ] Pagination
+- - [X] Adjust page on scroll
+- - [ ] Call API on page change
+- [ ] User login/signup 
+- [ ] Allow users to save favorites
+- [ ] Battle other Pokemon
+- - [ ] Player vs Player
+- - [ ] Player vs Computer
+- - [ ] Computer vs Computer
+- [ ] Styling of Cards for the Pokedex
+- [ ] Hover animations on cards
