@@ -26,7 +26,6 @@ export function Pokedex() {
     function handleScroll() {
         if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 200) {
           setPage(page + 1);
-        //   setTimeout(() => {console.log(`WAIT!`);}, 1000)
           console.log(page);
         }
     }
@@ -35,13 +34,13 @@ export function Pokedex() {
     // @TODO Check local storage for Pokemon and set state to that (WHEN CACHING IS IMPLEMENTED THIS CAN BE REMOVED)
     const getPokemon = async () => {
         try {
-            console.log(`WHOA DUDE!!!`);
             const url: string = process.env.REACT_APP_GET_ALL_POKEMON || "";
             
             if (!url) {
                 throw new Error("NO ENV FOUND")
             }
             const { data } = await axios.get(`${url}/${page}/51`)
+            // @TODO We need to spread out the contents of Pokemon and add the data to it. This just replaces the state.
             setPokemon(data);
         } catch (error) {
             throw new Error(`failed to fetch Pokemon data: ${error}`);
