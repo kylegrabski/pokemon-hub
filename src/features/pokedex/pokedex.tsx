@@ -1,6 +1,5 @@
 import axios from 'axios';
 import { useState, useEffect } from 'react';
-import StorageHelper from '../../utils/storage';
 
 interface IPokemonData {
     name: string
@@ -17,7 +16,7 @@ export function Pokedex() {
 
     useEffect(() => {
         getPokemon()
-    }, [])
+    }, [page])
 
     useEffect(() => {
         window.addEventListener('scroll', handleScroll);
@@ -27,6 +26,8 @@ export function Pokedex() {
     function handleScroll() {
         if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 200) {
           setPage(page + 1);
+        //   setTimeout(() => {console.log(`WAIT!`);}, 1000)
+          console.log(page);
         }
     }
     
@@ -34,18 +35,14 @@ export function Pokedex() {
     // @TODO Check local storage for Pokemon and set state to that (WHEN CACHING IS IMPLEMENTED THIS CAN BE REMOVED)
     const getPokemon = async () => {
         try {
-            const sh = new StorageHelper("All-Pokemon");
+            console.log(`WHOA DUDE!!!`);
             const url: string = process.env.REACT_APP_GET_ALL_POKEMON || "";
             
             if (!url) {
                 throw new Error("NO ENV FOUND")
             }
-            const { data } = await axios.get(`${url}/1/51`)
+            const { data } = await axios.get(`${url}/${page}/51`)
             setPokemon(data);
-
-            if (sh.get().length != pokemon.length) {
-                sh.save(pokemon);
-            }
         } catch (error) {
             throw new Error(`failed to fetch Pokemon data: ${error}`);
         }
