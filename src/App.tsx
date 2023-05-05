@@ -5,8 +5,6 @@ import { Pokedex } from './features/pokedex/pokedex';
 function App() {
   return (
     <div className="App">
-      {/* <header className="App-header">
-      </header> */}
       <Pokedex/>
     </div>
   );
