@@ -14,24 +14,11 @@ export function Pokedex() {
     const [pokemon, setPokemon] = useState<IPokemonData[]>([]);
     const [page, setPage] = useState<number>(1);
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => {
         getPokemon()
-    }, [page])
+    }, [])
 
-    useEffect(() => {
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
-      }, []);
-
-    function handleScroll() {
-        if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 200) {
-          setPage(page + 1);
-          console.log(page);
-        }
-    }
-    
-    // @TODO Call getPokemon when new page State gets sets
-    // @TODO Check local storage for Pokemon and set state to that (WHEN CACHING IS IMPLEMENTED THIS CAN BE REMOVED)
     const getPokemon = async () => {
         try {
             const url: string = process.env.REACT_APP_GET_ALL_POKEMON || "";
@@ -39,8 +26,7 @@ export function Pokedex() {
             if (!url) {
                 throw new Error("NO ENV FOUND")
             }
-            const { data } = await axios.get(`${url}/${page}/51`)
-            // @TODO We need to spread out the contents of Pokemon and add the data to it. This just replaces the state.
+            const { data } = await axios.get(`${url}`)
             setPokemon(data);
         } catch (error) {
             throw new Error(`failed to fetch Pokemon data: ${error}`);
@@ -49,8 +35,8 @@ export function Pokedex() {
 
     return (
         <>
-            {pokemon && pokemon.map((item: IPokemonData) => (
-                <div key={item.id}>
+            {pokemon && pokemon.map((item: IPokemonData, index: number) => (
+                <div key={index}>
                     <hr></hr>
                     <p>Entry number: {item.id}</p>
                     <p>Name: {item.name}</p>
