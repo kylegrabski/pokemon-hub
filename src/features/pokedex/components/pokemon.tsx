@@ -34,13 +34,15 @@ export function Pokemon() {
         }
     };
 
-    const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => setSearch(e.target.value.toLowerCase());
+    const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => setSearch(e.target.value.toLowerCase());
+
     const filteredPokemon = allPokemon.filter((element: IPokemonData) => element.name.toLowerCase().includes(search));
+
     const expandedView = (item: IPokemonData) => setExpandedPokemon(item);
 
     return (
         <>
-            <input type="text" placeholder="Search.." value={search} onChange={handleSearchChange} />
+            <input type="text" placeholder="Search.." onChange={handleSearch} />
             {expandedPokemon ? (
                 <div>
                     <p>Entry number: {expandedPokemon.id}</p>
