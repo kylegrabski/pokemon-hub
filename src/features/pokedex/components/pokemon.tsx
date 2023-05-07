@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { useState, useEffect } from 'react';
+import './style.css';
 
 interface IPokemonData {
     name: string
@@ -54,7 +55,7 @@ export function Pokemon() {
             )}
 
             {filteredPokemon.map((item: IPokemonData, index: number) => (
-                <div key={index} onClick={() => expandedView(item)} style={{ cursor: 'pointer' }}>
+                <div className='pokemon-card' key={index} onClick={() => expandedView(item)}>
                     <hr />
                     <p>Entry number: {item.id}</p>
                     <p>Name: {item.name}</p>
