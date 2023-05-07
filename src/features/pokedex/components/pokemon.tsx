@@ -8,7 +8,8 @@ interface IPokemonData {
     order: number
     sprites: any
     stats: object[]
-    types: object[]
+    types: Array<{ type: { name: string } }>
+    weight: number
 }
 
 export function Pokemon() {
@@ -39,7 +40,13 @@ export function Pokemon() {
 
     const filteredPokemon = allPokemon.filter((element: IPokemonData) => element.name.toLowerCase().includes(search));
 
-    const expandedView = (item: IPokemonData) => setExpandedPokemon(item);
+    const expandedView = (item: IPokemonData) => {
+        if (expandedPokemon === item) {
+            setExpandedPokemon(undefined);
+            return;
+        }
+        setExpandedPokemon(item);
+    }
 
     return (
         <>
@@ -48,6 +55,11 @@ export function Pokemon() {
                 <div>
                     <p>Entry number: {expandedPokemon.id}</p>
                     <p>Name: {expandedPokemon.name}</p>
+                    <p>Weight: {expandedPokemon.weight} lbs</p>
+                    <p>Types: {expandedPokemon.types.map(item => {
+                        return <span key={item.type.name}>{item.type.name} </span>
+                    })}
+                    </p>
                     <img src={expandedPokemon.sprites.front_default} alt={expandedPokemon.name} />
                 </div>
             ) : (
