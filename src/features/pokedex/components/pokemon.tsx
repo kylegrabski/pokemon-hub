@@ -11,7 +11,8 @@ interface IPokemonData {
 }
 
 export function Pokemon() {
-    const [pokemon, setPokemon] = useState<IPokemonData[]>([]);
+    const [allPokemon, setPokemon] = useState<IPokemonData[]>([]);
+    const [expandedPokemon, setExpandedPokemon] = useState<IPokemonData>();
     const [search, setSearch] = useState<string>("");
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -34,14 +35,24 @@ export function Pokemon() {
     };
 
     const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => setSearch(e.target.value.toLowerCase());
-
-    const filteredPokemon = pokemon.filter((element: IPokemonData) => element.name.toLowerCase().includes(search));
+    const filteredPokemon = allPokemon.filter((element: IPokemonData) => element.name.toLowerCase().includes(search));
+    const expandedView = (item: IPokemonData) => setExpandedPokemon(item);
 
     return (
         <>
             <input type="text" placeholder="Search.." value={search} onChange={handleSearchChange} />
+            {expandedPokemon ? (
+                <div>
+                    <p>Entry number: {expandedPokemon.id}</p>
+                    <p>Name: {expandedPokemon.name}</p>
+                    <img src={expandedPokemon.sprites.front_default} alt={expandedPokemon.name} />
+                </div>
+            ) : (
+                <p>CLICK POKEMON TO SHOW MORE STATS HERE</p>
+            )}
+
             {filteredPokemon.map((item: IPokemonData, index: number) => (
-                <div key={index}>
+                <div key={index} onClick={() => expandedView(item)} style={{ cursor: 'pointer' }}>
                     <hr />
                     <p>Entry number: {item.id}</p>
                     <p>Name: {item.name}</p>
