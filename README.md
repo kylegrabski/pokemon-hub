@@ -27,3 +27,5 @@ Future plans are to create user login/signup, storage of favorite pokemon, and m
 - - [ ] Computer vs Computer
 - [ ] Styling of Cards for the Pokedex
 - [ ] Hover animations on cards
+- [X] Search Pokedex
+- [ ] Implement Expanded View/Stats when clik on Pokemon
