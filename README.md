@@ -29,4 +29,6 @@ Future plans are to create user login/signup, storage of favorite pokemon, and m
 - [ ] Hover animations on cards
 - [X] Search Pokedex
 - [X] Implement Expanded View when click on Pokemon
-- - [ ] Show More Stats in Expanded View
+- - [X] Show More Stats in Expanded View
+- - [ ] Refine Stats Shown in Expanded View
+- - [X] Unselect Pokemon in Expanded View
