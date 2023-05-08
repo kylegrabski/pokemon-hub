@@ -14,14 +14,15 @@ export function Pokedex() {
     const [expandedPokemon, setExpandedPokemon] = useState<IPokemonData | undefined>();
     const [search, setSearch] = useState<string>("");
 
-    const handleExpandedView = (item: IPokemonData) => {
+    const addExpandedPokemon = (item: IPokemonData) => {
         if (expandedPokemon === item) {
             setExpandedPokemon(undefined);
             return;
         }
-        console.log(`item: ${item}`);
         setExpandedPokemon(item);
     }
+
+    const removeExpandedPokemon = () => setExpandedPokemon(undefined);
 
     const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => setSearch(e.target.value.toLowerCase());
 
@@ -47,8 +48,8 @@ export function Pokedex() {
     return (
         <>
             <SearchPokemon handleSearch={handleSearch}/>
-            <ExpandedPokemonView expandedPokemon={expandedPokemon}/>
-            <Pokemon allPokemon={allPokemon} search={search} handleExpandedView={handleExpandedView} />
+            <ExpandedPokemonView addExpandedPokemon={expandedPokemon} removeExpandedPokemon={removeExpandedPokemon}/>
+            <Pokemon allPokemon={allPokemon} search={search} addExpandedPokemon={addExpandedPokemon} />
         </>
     )
 }
