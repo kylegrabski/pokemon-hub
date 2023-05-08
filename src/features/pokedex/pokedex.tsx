@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react';
 // Import Modules
 import { Pokemon } from './components/pokemon';
 import { IPokemonData } from '../../types/index';
+import { SearchPokemon } from './components/searchPokemon';
 
 
 export function Pokedex() {
@@ -34,7 +35,7 @@ export function Pokedex() {
 
     return (
         <>
-            <input type="text" placeholder="Search.." onChange={handleSearch} />
+            <SearchPokemon handleSearch={handleSearch}/>
             <Pokemon allPokemon={allPokemon} search={search} />
         </>
     )
