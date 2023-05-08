@@ -33,7 +33,6 @@ export function Pokedex() {
     const getPokemon = async () => {
         try {
             const url: string = process.env.REACT_APP_GET_ALL_POKEMON || "";
-
             if (!url) {
                 throw new Error("NO ENV FOUND")
             }
@@ -43,7 +42,8 @@ export function Pokedex() {
             throw new Error(`failed to fetch Pokemon data: ${error}`);
         }
     };
-
+    
+    
     return (
         <>
             <SearchPokemon handleSearch={handleSearch}/>
