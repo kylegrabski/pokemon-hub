@@ -1,42 +1,13 @@
-import axios from 'axios';
-import { useState, useEffect } from 'react';
+// Import Libraries
+import { useState } from 'react';
+
+// Import Modules
 import './style.css';
+import { IPokemonData } from '../../../types/index';
 
-interface IPokemonData {
-    name: string
-    id: number
-    order: number
-    sprites: any
-    stats: object[]
-    types: Array<{ type: { name: string } }>
-    weight: number
-}
 
-export function Pokemon() {
-    const [allPokemon, setPokemon] = useState<IPokemonData[]>([]);
+export function Pokemon({allPokemon, search}: {allPokemon: IPokemonData[], search: string}) {
     const [expandedPokemon, setExpandedPokemon] = useState<IPokemonData>();
-    const [search, setSearch] = useState<string>("");
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    useEffect(() => {
-        getPokemon()
-    }, [])
-
-    const getPokemon = async () => {
-        try {
-            const url: string = process.env.REACT_APP_GET_ALL_POKEMON || "";
-
-            if (!url) {
-                throw new Error("NO ENV FOUND")
-            }
-            const { data } = await axios.get(`${url}`)
-            setPokemon(data);
-        } catch (error) {
-            throw new Error(`failed to fetch Pokemon data: ${error}`);
-        }
-    };
-
-    const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => setSearch(e.target.value.toLowerCase());
 
     const filteredPokemon = allPokemon.filter((element: IPokemonData) => element.name.toLowerCase().includes(search));
 
@@ -50,7 +21,6 @@ export function Pokemon() {
 
     return (
         <>
-            <input type="text" placeholder="Search.." onChange={handleSearch} />
             {expandedPokemon ? (
                 <div>
                     <p>Entry number: {expandedPokemon.id}</p>
@@ -61,6 +31,8 @@ export function Pokemon() {
                     })}
                     </p>
                     <img src={expandedPokemon.sprites.front_default} alt={expandedPokemon.name} />
+                    {/* TEMPORARY "X" OUT BUTTON */}
+                    <button onClick={() => setExpandedPokemon(undefined)}>X</button>
                 </div>
             ) : (
                 <p>CLICK POKEMON TO SHOW MORE STATS HERE</p>
