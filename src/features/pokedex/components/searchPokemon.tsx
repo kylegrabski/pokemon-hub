@@ -1,4 +1,4 @@
-interface SearchPokemonProps {
+type SearchPokemonProps = {
     handleSearch: (event: React.ChangeEvent<HTMLInputElement>) => void;
   }
 

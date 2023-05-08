@@ -1,4 +1,4 @@
-export interface IPokemonData {
+export type IPokemonData = {
     name: string;
     id: number;
     order: number;
