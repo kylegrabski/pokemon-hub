@@ -48,7 +48,7 @@ export function Pokedex() {
     return (
         <>
             <SearchPokemon handleSearch={handleSearch}/>
-            <ExpandedPokemonView addExpandedPokemon={expandedPokemon} removeExpandedPokemon={removeExpandedPokemon}/>
+            <ExpandedPokemonView expandedPokemon={expandedPokemon} removeExpandedPokemon={removeExpandedPokemon}/>
             <Pokemon allPokemon={allPokemon} search={search} addExpandedPokemon={addExpandedPokemon} />
         </>
     )
