@@ -1,22 +1,22 @@
 import { IPokemonData } from "../../../types"
 
 interface ExpandedPokemonViewProps {
-    addExpandedPokemon: IPokemonData | undefined;
+    expandedPokemon: IPokemonData | undefined;
     removeExpandedPokemon: any;
   }
-export function ExpandedPokemonView({ addExpandedPokemon, removeExpandedPokemon }: ExpandedPokemonViewProps) {
+export function ExpandedPokemonView({ expandedPokemon, removeExpandedPokemon }: ExpandedPokemonViewProps) {
     return (
         <>
             {addExpandedPokemon ? (
                 <div>
-                    <p>Entry number: {addExpandedPokemon.id}</p>
-                    <p>Name: {addExpandedPokemon.name}</p>
-                    <p>Weight: {addExpandedPokemon.weight} lbs</p>
-                    <p>Types: {addExpandedPokemon.types.map(item => {
+                    <p>Entry number: {expandedPokemon.id}</p>
+                    <p>Name: {expandedPokemon.name}</p>
+                    <p>Weight: {expandedPokemon.weight} lbs</p>
+                    <p>Types: {expandedPokemon.types.map(item => {
                         return <span key={item.type.name}>{item.type.name} </span>
                     })}
                     </p>
-                    <img src={addExpandedPokemon.sprites.front_default} alt={addExpandedPokemon.name} />
+                    <img src={expandedPokemon.sprites.front_default} alt={expandedPokemon.name} />
                     {/* TEMPORARY X BUTTON TO REMOVE EXPANDED VIEW */}
                     { <button onClick={removeExpandedPokemon}>X</button>}
                 </div>
