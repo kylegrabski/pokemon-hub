@@ -10,9 +10,7 @@ import { SearchPokemon } from './components/searchPokemon';
 
 export function Pokedex() {
     const [allPokemon, setAllPokemon] = useState<IPokemonData[]>([]);
-    const [search, setSearch] = useState<string>("");
-
-    const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => setSearch(e.target.value.toLowerCase());
+    const [search, setSearch] = useState<string>("");   
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => {
@@ -22,7 +20,6 @@ export function Pokedex() {
     const getPokemon = async () => {
         try {
             const url: string = process.env.REACT_APP_GET_ALL_POKEMON || "";
-
             if (!url) {
                 throw new Error("NO ENV FOUND")
             }
@@ -32,7 +29,9 @@ export function Pokedex() {
             throw new Error(`failed to fetch Pokemon data: ${error}`);
         }
     };
-
+    
+    const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => setSearch(e.target.value.toLowerCase());
+    
     return (
         <>
             <SearchPokemon handleSearch={handleSearch}/>
