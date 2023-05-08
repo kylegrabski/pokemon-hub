@@ -9,8 +9,8 @@ export function Pokemon({allPokemon, search, addExpandedPokemon}: {allPokemon: I
 
     return (
         <>
-            {filteredPokemon.map((item: IPokemonData, index: number) => (
-                <div className='pokemon-card' key={index} onClick={() => addExpandedPokemon(item)}>
+            {filteredPokemon.map((item: IPokemonData) => (
+                <div className='pokemon-card' key={item.id} onClick={() => addExpandedPokemon(item)}>
                     <hr />
                     <p>Entry number: {item.id}</p>
                     <p>Name: {item.name}</p>
