@@ -6,11 +6,22 @@ import { useState, useEffect } from 'react';
 import { Pokemon } from './components/pokemon';
 import { IPokemonData } from '../../types/index';
 import { SearchPokemon } from './components/searchPokemon';
+import { ExpandedPokemonView } from './components/expandedPokemonView';
 
 
 export function Pokedex() {
     const [allPokemon, setAllPokemon] = useState<IPokemonData[]>([]);
+    const [expandedPokemon, setExpandedPokemon] = useState<IPokemonData | undefined>();
     const [search, setSearch] = useState<string>("");
+
+    const handleExpandedView = (item: IPokemonData) => {
+        if (expandedPokemon === item) {
+            setExpandedPokemon(undefined);
+            return;
+        }
+        console.log(`item: ${item}`);
+        setExpandedPokemon(item);
+    }
 
     const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => setSearch(e.target.value.toLowerCase());
 
@@ -36,7 +47,8 @@ export function Pokedex() {
     return (
         <>
             <SearchPokemon handleSearch={handleSearch}/>
-            <Pokemon allPokemon={allPokemon} search={search} />
+            <ExpandedPokemonView expandedPokemon={expandedPokemon}/>
+            <Pokemon allPokemon={allPokemon} search={search} handleExpandedView={handleExpandedView} />
         </>
     )
 }
