@@ -2,8 +2,13 @@
 import './style.css';
 import { PokemonData } from '../../../types/index';
 
+interface PokemonProps {
+    allPokemon: PokemonData[];
+    search: string;
+    addExpandedPokemon: () => void;
+}
 
-export function Pokemon({allPokemon, search, addExpandedPokemon}: {allPokemon: PokemonData[], search: string, addExpandedPokemon: any}) {
+export function Pokemon({allPokemon, search, addExpandedPokemon}: PokemonProps) {
 
     const filteredPokemon = allPokemon.filter((element: PokemonData) => element.name.toLowerCase().includes(search));
 
