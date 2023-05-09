@@ -4,17 +4,17 @@ import { useState, useEffect } from 'react';
 
 // Import Modules
 import { Pokemon } from './components/pokemon';
-import { IPokemonData } from '../../types/index';
+import { PokemonData } from '../../types/index';
 import { SearchPokemon } from './components/searchPokemon';
 import { ExpandedPokemonView } from './components/expandedPokemonView';
 
 
 export function Pokedex() {
-    const [allPokemon, setAllPokemon] = useState<IPokemonData[]>([]);
-    const [expandedPokemon, setExpandedPokemon] = useState<IPokemonData | undefined>();
+    const [allPokemon, setAllPokemon] = useState<PokemonData[]>([]);
+    const [expandedPokemon, setExpandedPokemon] = useState<PokemonData | undefined>();
     const [search, setSearch] = useState<string>("");
 
-    const addExpandedPokemon = (item: IPokemonData) => {
+    const addExpandedPokemon = (item: PokemonData) => {
         if (expandedPokemon === item) {
             setExpandedPokemon(undefined);
             return;

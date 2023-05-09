@@ -1,4 +1,4 @@
-export type IPokemonData = {
+export type PokemonData = {
     name: string;
     id: number;
     order: number;

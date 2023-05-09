@@ -1,15 +1,15 @@
 // Import Modules
 import './style.css';
-import { IPokemonData } from '../../../types/index';
+import { PokemonData } from '../../../types/index';
 
 
-export function Pokemon({allPokemon, search, addExpandedPokemon}: {allPokemon: IPokemonData[], search: string, addExpandedPokemon: any}) {
+export function Pokemon({allPokemon, search, addExpandedPokemon}: {allPokemon: PokemonData[], search: string, addExpandedPokemon: any}) {
 
-    const filteredPokemon = allPokemon.filter((element: IPokemonData) => element.name.toLowerCase().includes(search));
+    const filteredPokemon = allPokemon.filter((element: PokemonData) => element.name.toLowerCase().includes(search));
 
     return (
         <>
-            {filteredPokemon.map((item: IPokemonData) => (
+            {filteredPokemon.map((item: PokemonData) => (
                 <div className='pokemon-card' key={item.id} onClick={() => addExpandedPokemon(item)}>
                     <hr />
                     <p>Entry number: {item.id}</p>

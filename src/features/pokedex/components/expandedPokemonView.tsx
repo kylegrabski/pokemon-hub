@@ -1,13 +1,13 @@
-import { IPokemonData } from "../../../types"
+import { PokemonData } from "../../../types"
 
 interface ExpandedPokemonViewProps {
-    expandedPokemon: IPokemonData | undefined;
+    expandedPokemon: PokemonData | undefined;
     removeExpandedPokemon: any;
   }
 export function ExpandedPokemonView({ expandedPokemon, removeExpandedPokemon }: ExpandedPokemonViewProps) {
     return (
         <>
-            {addExpandedPokemon ? (
+            {expandedPokemon ? (
                 <div>
                     <p>Entry number: {expandedPokemon.id}</p>
                     <p>Name: {expandedPokemon.name}</p>
