@@ -5,7 +5,7 @@ import { PokemonData } from '../../../types/index';
 interface PokemonProps {
     allPokemon: PokemonData[];
     search: string;
-    addExpandedPokemon: () => void;
+    addExpandedPokemon: (item: PokemonData) => void;
 }
 
 export function Pokemon({allPokemon, search, addExpandedPokemon}: PokemonProps) {
