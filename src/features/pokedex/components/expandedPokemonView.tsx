@@ -2,7 +2,7 @@ import { PokemonData } from "../../../types"
 
 interface ExpandedPokemonViewProps {
     expandedPokemon: PokemonData | undefined;
-    removeExpandedPokemon: any;
+    removeExpandedPokemon: () => void;
   }
 export function ExpandedPokemonView({ expandedPokemon, removeExpandedPokemon }: ExpandedPokemonViewProps) {
     return (
