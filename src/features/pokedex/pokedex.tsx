@@ -14,7 +14,7 @@ export function Pokedex() {
     const [expandedPokemon, setExpandedPokemon] = useState<PokemonData | undefined>();
     const [search, setSearch] = useState<string>("");
 
-    const addExpandedPokemon = (item: PokemonData) => {
+    const addExpandedPokemon = (item: PokemonData) : void => {
         if (expandedPokemon === item) {
             setExpandedPokemon(undefined);
             return;
