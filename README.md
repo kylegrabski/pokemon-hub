@@ -16,6 +16,7 @@ Future plans are to create user login/signup, storage of favorite pokemon, and m
 
 #### CURRENTLY WORKING ON
 - [ ] Store favorite pokemon in local storage until implementation of a users database
+- [X] Store all pokemon in local storage for faster page load
 - [X] ~~Pagination~~ (REMOVED)
 - - [X] ~~Adjust page on scroll~~ (REMOVED)
 - - [X] ~~Call API on page change~~ (REMOVED)
@@ -27,6 +28,8 @@ Future plans are to create user login/signup, storage of favorite pokemon, and m
 - - [ ] Computer vs Computer
 - [ ] Styling of Cards for the Pokedex
 - [ ] Hover animations on cards
+- - [X] Animate Sprites on Hover
+- - [ ] Reveal Stats on Hover
 - [X] Search Pokedex
 - [X] Implement Expanded View when click on Pokemon
 - - [X] Show More Stats in Expanded View
