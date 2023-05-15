@@ -7,7 +7,7 @@ class StorageHelper {
       this.key = key;
     }
   
-    public save(data: any) {
+    public set(data: any) {
       localStorage.setItem(this.key, JSON.stringify(data));
     }
   
