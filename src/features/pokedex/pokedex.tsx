@@ -3,8 +3,11 @@ import axios from 'axios';
 import { useState, useEffect } from 'react';
 
 // Import Modules
-import { Pokemon } from './components/pokemon';
+import StorageHelper from '../../utils/storage';
 import { PokemonData } from '../../types/index';
+
+// Import Compoenents
+import { Pokemon } from './components/pokemon';
 import { SearchPokemon } from './components/searchPokemon';
 import { ExpandedPokemonView } from './components/expandedPokemonView';
 
@@ -33,11 +36,20 @@ export function Pokedex() {
 
     const getPokemon = async () => {
         try {
+            const sh = new StorageHelper("AllPokemon");
+
+            const cachedPokemon = sh.get();
+            if (cachedPokemon) {
+                setAllPokemon(cachedPokemon);
+                return;
+            }
+
             const url: string = process.env.REACT_APP_GET_ALL_POKEMON || "";
             if (!url) {
                 throw new Error("NO ENV FOUND")
             }
             const { data } = await axios.get(`${url}`)
+            sh.set(data);
             setAllPokemon(data);
         } catch (error) {
             throw new Error(`failed to fetch Pokemon data: ${error}`);
