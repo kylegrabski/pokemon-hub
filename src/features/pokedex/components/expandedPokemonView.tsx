@@ -1,4 +1,5 @@
 import { PokemonData } from "../../../types"
+import Button from '@mui/material/Button';
 
 interface ExpandedPokemonViewProps {
     expandedPokemon: PokemonData | undefined;
@@ -16,9 +17,10 @@ export function ExpandedPokemonView({ expandedPokemon, removeExpandedPokemon }: 
                         return <span key={item.type.name}>{item.type.name} </span>
                     })}
                     </p>
-                    <img src={expandedPokemon.sprites.front_default} alt={expandedPokemon.name} />
+                    <img src={expandedPokemon.sprites.other['official-artwork'].front_default} alt={expandedPokemon.name} />
+                    {/* <img src={expandedPokemon.sprites.front_default} alt={expandedPokemon.name} /> */}
                     {/* TEMPORARY X BUTTON TO REMOVE EXPANDED VIEW */}
-                    { <button onClick={removeExpandedPokemon}>X</button>}
+                    <Button variant="contained" onClick={removeExpandedPokemon}>X</Button>
                 </div>
             ) : (
                 <p>CLICK POKEMON TO SHOW MORE STATS HERE</p>
