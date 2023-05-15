@@ -1,3 +1,12 @@
 .pokemon-card {
     cursor: pointer;
+    /* position: relative; */
+    width: 200px;
+    height: 200px;
 }
+
+.pokemon-card img.animated-sprite {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
