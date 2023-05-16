@@ -58,15 +58,3 @@ export function Pokemon({ allPokemon, search, addExpandedPokemon }: PokemonProps
         </>
     )
 }
-
-/* // <div className='pokemon-card' key={item.id} onClick={() => addExpandedPokemon(item)} onMouseEnter={() => toggleHover(item.id)} onMouseLeave={() => toggleHover(0)}>
-//     <hr />
-//     <p>Entry number: {item.id}</p>
-//     <p>Name: {item.name}</p>
-//     <div >
-//         <img
-//             src={item.id === hoveredItemId ? item.sprites.versions['generation-v']['black-white'].animated.front_default : item.sprites.front_default}
-//             alt={item.name}
-//         />
-//     </div>
-// </div> */
