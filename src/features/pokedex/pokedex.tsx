@@ -26,10 +26,8 @@ export function Pokedex() {
     }
 
     const removeExpandedPokemon = () => setExpandedPokemon(undefined);
-
     const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => setSearch(e.target.value.toLowerCase());
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => {
         getPokemon()
     }, [])
