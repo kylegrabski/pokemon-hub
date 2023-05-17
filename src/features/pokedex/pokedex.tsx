@@ -6,10 +6,14 @@ import { useState, useEffect } from 'react';
 import StorageHelper from '../../utils/storage';
 import { PokemonData } from '../../types/index';
 
-// Import Compoenents
+// Import Components
 import { Pokemon } from './components/pokemon';
-import { SearchPokemon } from './components/searchPokemon';
+import { NavBar } from './components/navBar';
 import { ExpandedPokemonView } from './components/expandedPokemonView';
+
+// Import Store
+import { useAppSelector } from '../../app/hooks';
+// import { selectSearch } from '../navBar/searchSlice';
 
 
 export function Pokedex() {
@@ -26,7 +30,10 @@ export function Pokedex() {
     }
 
     const removeExpandedPokemon = () => setExpandedPokemon(undefined);
-    const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => setSearch(e.target.value.toLowerCase());
+    const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setSearch(e.target.value.toLowerCase());
+
+    }
 
     useEffect(() => {
         getPokemon()
@@ -57,7 +64,7 @@ export function Pokedex() {
     
     return (
         <>
-            <SearchPokemon handleSearch={handleSearch}/>
+            <NavBar handleSearch={handleSearch}/>
             <ExpandedPokemonView expandedPokemon={expandedPokemon} removeExpandedPokemon={removeExpandedPokemon}/>
             <Pokemon allPokemon={allPokemon} search={search} addExpandedPokemon={addExpandedPokemon} />
         </>
