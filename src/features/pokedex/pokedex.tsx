@@ -14,6 +14,7 @@ import { ExpandedPokemonView } from "./components/expandedPokemonView";
 import { useAppSelector } from "../../app/hooks";
 import { selectSearch } from "../navBar/searchSlice";
 
+
 export function Pokedex() {
   const searchPokemon = useAppSelector(selectSearch);
 
