@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-// import type { RootState } from '../../app/store';
+import type { RootState } from '../../app/store';
 
 // Define a type for the slice state
 interface SearchState {
@@ -25,6 +25,6 @@ export const searchSlice = createSlice({
 export const { updateSearch } = searchSlice.actions;
 
 // Other code such as selectors can use the imported `RootState` type
-// export const selectSearch = (state: RootState) => state.search.value;
+export const selectSearch = (state: RootState) => state.search.value;
 
 export default searchSlice.reducer;
