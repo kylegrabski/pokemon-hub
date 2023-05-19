@@ -16,6 +16,7 @@ Future plans are to create user login/signup, storage of favorite pokemon, and m
 
 #### CURRENTLY WORKING ON
 - [ ] Store favorite pokemon in local storage until implementation of a users database
+- [X] Implement State Store
 - [X] Store all pokemon in local storage for faster page load
 - [X] ~~Pagination~~ (REMOVED)
 - - [X] ~~Adjust page on scroll~~ (REMOVED)
