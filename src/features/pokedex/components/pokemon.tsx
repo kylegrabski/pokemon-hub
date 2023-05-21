@@ -5,23 +5,26 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
-
 // Import Modules
 import './style.css';
 import { PokemonData } from '../../../types/index';
 import { useState } from 'react';
+// Import Store
+import { useAppSelector } from "../../../app/hooks";
+import { selectSearch } from "../../navBar/searchSlice";
 
 interface PokemonProps {
     allPokemon: PokemonData[];
-    search: string;
     addExpandedPokemon: (item: PokemonData) => void;
 }
 
 
-export function Pokemon({ allPokemon, search, addExpandedPokemon }: PokemonProps) {
+export function Pokemon({ allPokemon, addExpandedPokemon }: PokemonProps) {
+    const searchPokemon = useAppSelector(selectSearch);
+
     const [hoveredItemId, setHoveredItemId] = useState<number | null>(null);
 
-    const filteredPokemon = allPokemon.filter((element: PokemonData) => element.name.toLowerCase().includes(search));
+    const filteredPokemon = allPokemon.filter((element: PokemonData) => element.name.toLowerCase().includes(searchPokemon));
 
     const toggleHover = (id: number) => {
         setHoveredItemId(id);
