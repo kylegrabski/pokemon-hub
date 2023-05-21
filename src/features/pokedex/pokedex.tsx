@@ -1,25 +1,21 @@
 // Import Libraries
 import axios from "axios";
 import { useState, useEffect } from "react";
-
 // Import Modules
 import StorageHelper from "../../utils/storage";
 import { PokemonData } from "../../types/index";
-
 // Import Components
 import { Pokemon } from "./components/pokemon";
 import { ExpandedPokemonView } from "./components/expandedPokemonView";
 
-// Import Store
-import { useAppSelector } from "../../app/hooks";
-import { selectSearch } from "../navBar/searchSlice";
-
 
 export function Pokedex() {
-  const searchPokemon = useAppSelector(selectSearch);
-
   const [allPokemon, setAllPokemon] = useState<PokemonData[]>([]);
   const [expandedPokemon, setExpandedPokemon] = useState<PokemonData | undefined>();
+
+  useEffect(() => {
+    getPokemon();
+  }, []);
 
   const addExpandedPokemon = (item: PokemonData): void => {
     if (expandedPokemon === item) {
@@ -30,10 +26,6 @@ export function Pokedex() {
   };
 
   const removeExpandedPokemon = () => setExpandedPokemon(undefined);
-
-  useEffect(() => {
-    getPokemon();
-  }, []);
 
   const getPokemon = async () => {
     try {
@@ -65,7 +57,6 @@ export function Pokedex() {
       />
       <Pokemon
         allPokemon={allPokemon}
-        search={searchPokemon}
         addExpandedPokemon={addExpandedPokemon}
       />
     </>
