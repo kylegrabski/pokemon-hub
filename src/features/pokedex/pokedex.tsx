@@ -39,13 +39,14 @@ export function Pokedex() {
 
       const url: string = process.env.REACT_APP_GET_ALL_POKEMON || "";
       if (!url) {
-        throw new Error("NO ENV FOUND");
+        console.error("NO ENV FOUND");
+        return;
       }
-      const { data } = await axios.get(`${url}`);
+      const { data } = await axios.get(url);
       sh.set(data);
       setAllPokemon(data);
     } catch (error) {
-      throw new Error(`failed to fetch Pokemon data: ${error}`);
+      console.error(`failed to fetch Pokemon data: ${error}`);
     }
   };
 
